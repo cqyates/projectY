@@ -4,6 +4,38 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+//getJSON call to flickr API. Tried sticking this in pace of the ajax example given, but it did not work.
+var flickerAPI =
+  "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+
+$.getJSON(flickerAPI, {
+  tags: "historical",
+  tagmode: "any",
+  format: "json"
+})
+  .done(function(result) {
+    $.each(result.items, function(i, item) {
+      $("<img>")
+        .attr("src", item.media.m)
+        .appendTo("#flickrData");
+      if (i === 5) {
+        return false;
+      }
+    });
+  })
+  .fail(function(xhr, status, error) {
+    alert(
+      "Result: " +
+        status +
+        " " +
+        error +
+        " " +
+        xhr.status +
+        " " +
+        xhr.statusText
+    );
+  });
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
@@ -16,12 +48,14 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
+  // getExamples: function() {
+  //   return $.ajax({
+  //     url: flickerAPI,
+  //     method: "GET"
+  //   }).then(function(response) {
+  //     console.log(response);
+  //   });
+  // },
   deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
