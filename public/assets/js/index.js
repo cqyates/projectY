@@ -1,40 +1,12 @@
 // Get references to page elements
-var $exampleAuthor = $('#example-author');
-var $examplePassword = $('#example-password');
-var $exampleTitle = $('#example-title');
-var $examplePhotoURL = $('#example-photoURL');
-var $exampleTags = $('#example-tags');
-var $exampleZipcode = $('#example-zipcode');
-var $submitBtn = $('#submit');
-var $exampleList = $('#example-list');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// var $exampleAuthor = $("#example-author");
+// var $examplePassword = $("#example-password");
+// var $exampleTitle = $("#example-title");
+// var $examplePhotoURL = $("#example-photoURL");
+// var $exampleTags = $("#example-tags");
+// var $exampleZipcode = $("#example-zipcode");
+// var $submitBtn = $("#submit");
+var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -50,14 +22,14 @@ var API = {
   // },
   getExamples: function() {
     return $.ajax({
-      url: 'api/examples',
-      type: 'GET'
+      url: "api/examples",
+      type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
-      url: 'api/examples/' + id,
-      type: 'DELETE'
+      url: "api/examples/" + id,
+      type: "DELETE"
     });
   }
 };
@@ -66,26 +38,26 @@ var API = {
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
     var $examples = data.map(function(example) {
-      console.log('are you here?');
-      var $a = $('<a>')
+      console.log("are you here?");
+      var $a = $("<a>")
         .text(example.author)
         .text(example.password)
         .text(example.title)
         .text(example.photoURL)
         .text(example.tags)
         .text(example.zipcode)
-        .attr('href', '/example/' + example.id);
+        .attr("href", "/example/" + example.id);
 
-      var $li = $('<li>')
+      var $li = $("<li>")
         .attr({
-          class: 'list-group-item',
-          'data-id': example.id
+          class: "list-group-item",
+          "data-id": example.id
         })
         .append($a);
 
-      var $button = $('<button>')
-        .addClass('btn btn-danger float-right delete')
-        .text('ｘ');
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
       $li.append($button);
 
@@ -133,7 +105,7 @@ var refreshExamples = function() {
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
-    .attr('data-id');
+    .attr("data-id");
 
   API.deleteExample(idToDelete).then(function() {
     refreshExamples();
@@ -142,4 +114,4 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 // $submitBtn.on('click', handleFormSubmit);
-$exampleList.on('click', '.delete', handleDeleteBtnClick);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
