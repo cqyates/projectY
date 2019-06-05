@@ -1,7 +1,27 @@
 module.exports = function(sequelize, DataTypes) {
-  var Example = sequelize.define("Example", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+  var Profile = sequelize.define("Profile", {
+    authorname: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 16]
+      }
+    },
+    title: DataTypes.STRING,
+    photoURL: {
+      type: DataTypes.TEXT
+    },
+    tags: DataTypes.STRING,
+    zipcode: {
+      type: DataTypes.STRING,
+      validate: {
+        isNumeric: true
+      }
+    }
   });
-  return Example;
+  return Profile;
 };
