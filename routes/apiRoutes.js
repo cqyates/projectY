@@ -1,23 +1,49 @@
 var db = require("../models");
+var multer = require("multer");
+
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "public/assets/img");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + ".jpg");
+  }
+});
+
+var upload = multer({ storage: storage });
 
 module.exports = function(app) {
   // Get all examples
   app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+    db.Profile.findAll({}).then(function(dbExamples) {
+      res.render("example", { user: dbExamples });
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.get("/upload", function(req, res) {
+    res.render("upload");
+  });
+
+  app.post("/api/examples", upload.single("file"), function(req, res, next) {
+    const filePath = `/assets/img/${req.file.filename}`;
+    var formBody = {
+      authorname: req.body.authorname,
+      password: req.body.password,
+      title: req.body.title,
+      photoURL: filePath,
+      tags: req.body.tags,
+      zipcode: req.body.zipcode
+    };
+    db.Profile.create(formBody).then(function(dbExample) {
+      console.log("saved to database");
+      res.redirect("/");
     });
   });
 
-  // Delete an example by id
+  //Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
+    db.Profile.destroy({ where: { id: req.params.id } }).then(function(
       dbExample
     ) {
       res.json(dbExample);
