@@ -41,15 +41,9 @@ module.exports = function(app) {
     });
   });
 
-<<<<<<< HEAD
   //Delete an example by id
   app.delete('/api/examples/:id', function(req, res) {
     db.Profile.destroy({ where: { id: req.params.id } }).then(function(
-=======
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
->>>>>>> master
       dbExample
     ) {
       res.json(dbExample);
