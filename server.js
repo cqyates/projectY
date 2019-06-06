@@ -5,6 +5,17 @@ var exphbs = require("express-handlebars");
 var path = require("path");
 var db = require("./models");
 
+//Geocoder
+var NodeGeocoder = require("node-geocoder");
+
+var options = {
+  provider: "google",
+  httpAdapter: "https",
+  apiKey: process.env.GEOCODER_API_KEY,
+  formatter: null
+};
+var geocoder = NodeGeocoder(options);
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 

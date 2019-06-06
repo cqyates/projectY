@@ -1,4 +1,5 @@
 var db = require("../models");
+var keys = require("../keys");
 
 module.exports = function(app) {
   // Load index page
@@ -13,7 +14,6 @@ module.exports = function(app) {
 
   app.get("/map", function(req, res) {
     res.render("map");
-    console.log("page loaded");
   });
 
   app.get("/form", function(req, res) {
