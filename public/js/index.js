@@ -17,7 +17,7 @@ $(document).ready(function() {
     $("#outputDiv").html("");
 
     var flickerAPI =
-      "https://api.flickr.com/services/feeds/photos_public.gne?format=json&tags=" +
+      "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=1be497166d77996e530cc10b42fa5345&text=dandy&format=json&jsoncallback=" +
       $("#search").val();
     $.ajax({
       url: flickerAPI,
@@ -179,3 +179,5 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
