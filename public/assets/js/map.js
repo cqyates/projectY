@@ -1,3 +1,4 @@
+console.log("This is a map test");
 var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
