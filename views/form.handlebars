@@ -4,56 +4,94 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" enctype="multipart/form-data" action="/api/examples" method="POST">
-          <div class="form-group">
-            <label for="author">Author Name</label>
-            <input type="text" id="example-author" name="authorname" class="form-control"
-              aria-describedby="example-author" placeholder="Enter Example Author">
-          </div>
-          <div class="form-group">
-            <label for="example-password">Example Password</label>
-            <input type="text" id="example-password" name="password" class="form-control"
-              aria-describedby="example-password" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-title">Example Title</label>
-            <input type="text" id="example-title" name="title" class="form-control" aria-describedby="example-title"
-              placeholder="Enter Example Title">
-          </div>
-          <div class="form-group">
-            <label for="example-photoURL">Example Photo URL</label>
-            {{!-- <input type="text" id="example-photoURL" class="form-control" aria-describedby="example-photoURL"
-              placeholder="Enter Example URL"> --}}
-            <input type="file" name="file">
-          </div>
+        <div class="container" id="modal-container">
+          <div class="modal fade" id="pageopen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="false">
+                    x
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">
+                    This Modal title
+                  </h4>
+                </div>
+                <div class="modal-body">
+                  <form class="clearfix mb-4" id="form-thing" enctype="multipart/form-data" action="/api/examples"
+                    method="POST">
 
-          <div class="form-group">
-            <label for="example-tags">Example Tags</label>
-            <input type="text" id="example-tags" name="tags" class="form-control" aria-describedby="example-tags"
-              placeholder="Enter Example tags">
-          </div>
-          <div class="form-group">
-            <label for="example-zipcode">Example Zip Code</label>
-            <input type="text" id="example-zipcode" name="zipcode" class="form-control"
-              aria-describedby="example-zipcode" placeholder="Enter Example Zip Code">
-          </div>
-          <button id="submit" type="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.authorname}}</a>
-            <input class="form control" type="text"
-              placeholder="{{this.id}}. {{this.authorname}} {{this.password}} {{this.title}} {{this.photoURL}} {{this.tags}} {{this.zipcode}}">
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+                    <div class="form-group">
+                      <label for="example-author">Example Author Name</label>
+                      <input type="text" id="example-author" name="authorname" class="form-control"
+                        aria-describedby="example-author" placeholder="Enter Example Author">
+                    </div>
+                    <div class="form-group">
+                      <label for="example-password">Example Password</label>
+                      <input type="text" id="example-password" name="password" class="form-control"
+                        aria-describedby="example-password" placeholder="Enter Example Text">
+                    </div>
+                    <div class="form-group">
+                      <label for="example-title">Example Title</label>
+                      <input type="text" id="example-title" name="title" class="form-control"
+                        aria-describedby="example-title" placeholder="Enter Example Title">
+                    </div>
+                    <div class="form-group">
+                      <label for="example-photoURL">Example Photo URL</label>
+                      {{!-- <input type="text" id="example-photoURL" class="form-control" aria-describedby="example-photoURL"
+              placeholder="Enter Example URL"> --}}
+                      <input type="file" name="file">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="example-tags">Example Tags</label>
+                      <input type="text" id="example-tags" name="tags" class="form-control"
+                        aria-describedby="example-tags" placeholder="Enter Example tags">
+                    </div>
+                    <div class="form-group">
+                      <label for="example-zipcode">Example Zip Code</label>
+                      <input type="text" id="example-zipcode" name="zipcode" class="form-control"
+                        aria-describedby="example-zipcode" placeholder="Enter Example Zip Code">
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary float-right">Submit</button>
+                    <h3>Examples:</h3>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"> Submit changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal -->
+        </div>
       </div>
+      <button id="showModal">Show Modal</button>
+
+      <ul id="example-list" class="list-group">
+        {{#each examples}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.id}}">{{this.authorname}}</a>
+          <input class="form control" type="text"
+            placeholder="{{this.id}}. {{this.authorname}} {{this.password}} {{this.title}} {{this.photoURL}} {{this.tags}} {{this.zipcode}}">
+          <button class="btn btn-danger float-right delete">ｘ</button>
+        </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </div>
+</div>
+
+<script type="text/javascript">
+
+  $(window).on('load', function (event) {
+    event.preventDefault();
+    jQuery.noConflict();
+    $('#pageopen').modal('show');
+  });
+
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
