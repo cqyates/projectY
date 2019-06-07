@@ -11,10 +11,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/map", function(req, res) {
-    res.render("map");
-  });
-
   app.get("/form", function(req, res) {
     db.Profile.findAll({}).then(function(dbExamples) {
       res.render("form", {
@@ -22,6 +18,10 @@ module.exports = function(app) {
         examples: dbExamples
       });
     });
+  });
+
+  app.get("/map", function(req, res) {
+    res.render("map");
   });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
