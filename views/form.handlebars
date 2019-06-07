@@ -4,7 +4,7 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <div class="container" id = "modal-container">
+        <div class="container" id="modal-container">
           <div class="modal fade" id="pageopen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -18,7 +18,8 @@
                   </h4>
                 </div>
                 <div class="modal-body">
-                   <form class="clearfix mb-4" id = "form-thing" enctype="multipart/form-data" action="/api/examples" method="POST">
+                  <form class="clearfix mb-4" id="form-thing" enctype="multipart/form-data" action="/api/examples"
+                    method="POST">
 
                     <div class="form-group">
                       <label for="example-author">Example Author Name</label>
@@ -54,7 +55,7 @@
                     </div>
                     <button id="submit" type="submit" class="btn btn-primary float-right">Submit</button>
                     <h3>Examples:</h3>
-                  </form> 
+                  </form>
                 </div>
               </div>
               <div class="modal-footer">
@@ -64,35 +65,33 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal -->
         </div>
-        </div>
-        <button id="showModal">Show Modal</button>
-
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.authorname}}</a>
-            <input class="form control" type="text"
-              placeholder="{{this.id}}. {{this.authorname}} {{this.password}} {{this.title}} {{this.photoURL}} {{this.tags}} {{this.zipcode}}">
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
+      <button id="showModal">Show Modal</button>
+
+      <ul id="example-list" class="list-group">
+        {{#each examples}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.id}}">{{this.authorname}}</a>
+          <input class="form control" type="text"
+            placeholder="{{this.id}}. {{this.authorname}} {{this.password}} {{this.title}} {{this.photoURL}} {{this.tags}} {{this.zipcode}}">
+          <button class="btn btn-danger float-right delete">ｘ</button>
+        </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </div>
+</div>
 
-  
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    $(window).on('load',function(event){
-      event.preventDefault();
-      jQuery.noConflict();
-        $('#pageopen').modal('show');
-    });
+  $(window).on('load', function (event) {
+    event.preventDefault();
+    jQuery.noConflict();
+    $('#pageopen').modal('show');
+  });
 
 </script>
-
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/assets/js/index.js"></script>

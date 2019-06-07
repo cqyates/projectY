@@ -1,3 +1,5 @@
+//Sets up the database through sequelize TODO should we have two tables (user/password and photo entry?)
+
 module.exports = function(sequelize, DataTypes) {
   var Profile = sequelize.define("Profile", {
     authorname: {

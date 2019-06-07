@@ -11,6 +11,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/map", function(req, res) {
+    res.render("map");
+  });
+
   app.get("/form", function(req, res) {
     db.Profile.findAll({}).then(function(dbExamples) {
       res.render("form", {

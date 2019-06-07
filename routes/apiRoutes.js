@@ -25,6 +25,10 @@ module.exports = function(app) {
     res.render("upload");
   });
 
+  app.post("/api/location", (req, res) => {
+    console.log(req.body)
+  });
+
   app.post("/api/examples", upload.single("file"), function(req, res, next) {
     const filePath = `/assets/img/${req.file.filename}`;
     var formBody = {
