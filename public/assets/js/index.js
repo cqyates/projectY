@@ -1,31 +1,110 @@
+console.log("Hello?");
 // Get references to page elements
-// var $exampleAuthor = $("#example-author");
-// var $examplePassword = $("#example-password");
-// var $exampleTitle = $("#example-title");
-// var $examplePhotoURL = $("#example-photoURL");
-// var $exampleTags = $("#example-tags");
-// var $exampleZipcode = $("#example-zipcode");
-// var $submitBtn = $("#submit");
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
+var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+
+//getJSON call to flickr API. Tried sticking this in pace of the ajax example given, but it did not work.
+$(document).ready(function() {
+  $("#reset").click(function(e) {
+    location.reload();
+  });
+
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
+
+    var flickerAPI =
+      "https://api.flickr.com/services/feeds/photos_public.gne?format=json&tags=" +
+      $("#search").val();
+    $.ajax({
+      url: flickerAPI,
+      dataType: "jsonp", // jsonp
+      jsonpCallback: "jsonFlickrFeed", // add this property
+      success: function(result, status, xhr) {
+        $.each(result.items, function(i, item) {
+          $("<img>")
+            .attr("src", item.media.m)
+            .appendTo("#outputDiv");
+          if (i === 5) {
+            return false;
+          }
+        });
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr);
+        $("#outputDiv").html(
+          "Result: " +
+            status +
+            " " +
+            error +
+            " " +
+            xhr.status +
+            " " +
+            xhr.statusText
+        );
+      }
+    });
+  });
+});
+
+
+
+
+//   method: "GET"
+// }).then(function(response) {
+//   console.log(response)
+// });
+
+// $.getJSON(flickerAPI, {
+//   tags: "historical",
+//   tagmode: "any",
+//   format: "json"
+//   })
+//   .done(function(result) {
+//     $.each(result.items, function(i, item) {
+//       console.log("this is a test");
+//       $("<img>")
+//         .attr("src", item.media.m)
+//         .appendTo("#flickrData");
+//       if (i === 5) {
+//         return false;
+//       }
+//     });
+//   })
+//   .fail(function(xhr, status, error) {
+//     alert(
+//       "Result: " +
+//         status +
+//         " " +
+//         error +
+//         " " +
+//         xhr.status +
+//         " " +
+//         xhr.statusText
+//     );
+//   });
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  // saveExample: function(example) {
-  //   return $.ajax({
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     type: 'POST',
-  //     url: 'api/examples',
-  //     data: example
-  //   });
-  // },
-  getExamples: function() {
+  saveExample: function(example) {
     return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
       url: "api/examples",
-      type: "GET"
+      data: JSON.stringify(example)
     });
   },
+  // getExamples: function() {
+  //   return $.ajax({
+  //     url: flickerAPI,
+  //     method: "GET"
+  //   }).then(function(response) {
+  //     console.log(response);
+  //   });
+  // },
   deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
@@ -38,14 +117,8 @@ var API = {
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
     var $examples = data.map(function(example) {
-      console.log("are you here?");
       var $a = $("<a>")
-        .text(example.author)
-        .text(example.password)
-        .text(example.title)
-        .text(example.photoURL)
-        .text(example.tags)
-        .text(example.zipcode)
+        .text(example.text)
         .attr("href", "/example/" + example.id);
 
       var $li = $("<li>")
@@ -71,34 +144,26 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-//   var example = {
-//     authorname: $exampleAuthor.val().trim(),
-//     password: $examplePassword.val().trim(),
-//     title: $exampleTitle.val().trim(),
-//     // photoURL: $examplePhotoURL.val().trim(),
-//     tags: $exampleTags.val().trim(),
-//     zipcode: $exampleZipcode.val().trim()
-//   };
+  var example = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
+  };
 
-// if (!(example.text && example.description)) {
-//   alert("You must enter an example text and description!");
-//   return;
-// }
+  if (!(example.text && example.description)) {
+    alert("You must enter an example text and description!");
+    return;
+  }
 
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
+  API.saveExample(example).then(function() {
+    refreshExamples();
+  });
 
-//   $exampleAuthor.val('');
-//   $examplePassword.val('');
-//   $exampleTitle.val('');
-//   $examplePhotoURL.val('');
-//   $exampleTags.val('');
-//   $exampleZipcode.val('');
-// };
+  $exampleText.val("");
+  $exampleDescription.val("");
+};
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
@@ -113,5 +178,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-// $submitBtn.on('click', handleFormSubmit);
+$submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);

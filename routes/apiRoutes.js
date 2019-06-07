@@ -1,6 +1,7 @@
 var db = require("../models");
 var multer = require("multer");
 
+
 // SET STORAGE
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -53,4 +54,5 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
 };
