@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-12" id="map"></div>
+</div>
+
+<div class="container" id="modal-container">
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        Please Login Below
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{!-- need to create a route to post these to api users? --}}
+                    <form class="clearfix mb-4" id="login-form" enctype="multipart/form-data" action="/api/users"
+                        method="POST">
+
+                        <div class="form-group">
+                            <label for="user-name">Email</label>
+                            <input type="email" id="user-name" name="username" class="form-control"
+                                aria-describedby="example-author" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="example-password">Password</label>
+                            <input type="text" id="example-password" name="password" class="form-control"
+                                aria-describedby="example-password" placeholder="password">
+                        </div>
+                        <button id="submit" type="submit" class="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<button id="showModal" hidden="true">Show Modal</button>
+
+<script type="text/javascript">
+
+  $(window).on('load', function (event) {
+      console.log("this shit works");
+    event.preventDefault();
+    jQuery.noConflict();
+    $('#login').modal('show');
+  });
+
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWvChiWYovzbffWYFQGl1BglNdDgiAsPg&callback=initMap">
+</script>
+<script src="assets/js/map.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/js/index.js"></script>
