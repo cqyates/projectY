@@ -6,13 +6,13 @@ module.exports = function(app) {
     res.render("map");
   });
 
+  app.get("/login", function(req, res) {
+    console.log("login route working");
+    res.render("login");
+  });
+
   app.get("/form", function(req, res) {
-    db.Profile.findAll({}).then(function(dbExamples) {
-      res.render("form", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    res.render("form");
   });
 
   // Load example page and pass in an example by id
