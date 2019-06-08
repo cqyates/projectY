@@ -3,12 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Profile.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    res.render("map");
   });
 
   app.get("/form", function(req, res) {
@@ -20,9 +15,6 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/map", function(req, res) {
-    res.render("map");
-  });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Profile.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
