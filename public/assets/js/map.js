@@ -1,7 +1,6 @@
 var marker;
 var map;
 var infoWindow;
-console.log("This is a map test");
 
 var options = {
   enableHighAccuracy: true,
@@ -13,9 +12,10 @@ function success(pos) {
   var crd = pos.coords;
 
   console.log("Your current position is:");
-  // console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
+  return crd;
 }
 
 function error(err) {
@@ -45,8 +45,6 @@ function placeMarkerAndPanTo(latLng, map) {
 function getMarkerLocation() {
   console.log(google.map.latLng);
 }
-
-
 
 function placeMarkerAndPanTo(latLng, map) {
   var marker = new google.maps.Marker({
@@ -101,3 +99,53 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
+
+
+$(document).ready(function() {
+  $("#reset").click(function(e) {
+    location.reload();
+  });
+  console.log("This is Index.js");
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
+    var query =
+      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json";
+    //await - undefined 
+    //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+    $.ajax({
+      url: query,
+      method: "GET"
+    }).then(function(response) {
+      var resInfo = response.photos.photo.id[i];
+      console.log(resInfo);
+    });
+  //     success: function(result, status, xhr) {
+  //       $.each(result.items, function(i, item) 
+  //       // var result.photos.photo.id[i]
+  //       // result.id
+        
+  //       {
+  //         $("<img>")
+  //           .attr("src", item.media.m)
+  //           .appendTo("#outputDiv");
+  //         if (i === 5) {
+  //           return false;
+  //         }
+  //       });
+  //     },
+  //     error: function(xhr, status, error) {
+  //       console.log(xhr);
+  //       $("#outputDiv").html(
+  //         "Result: " +
+  //           status +
+  //           " " +
+  //           error +
+  //           " " +
+  //           xhr.status +
+  //           " " +
+  //           xhr.statusText
+  //       );
+  //     }
+  //   });
+  // });
+});
