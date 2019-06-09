@@ -25,6 +25,15 @@ function getMarkerLocation() {
   console.log(google.map.latLng);
 }
 
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
+}
+
+var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
