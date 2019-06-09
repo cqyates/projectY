@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Profile = sequelize.define("Profile", {
-    authorname: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false
     },
