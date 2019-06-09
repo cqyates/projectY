@@ -9,24 +9,24 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Add Photo Here!
+              </h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="false">
                 x
               </button>
-              <h4 class="modal-title" id="myModalLabel">
-              </h4>
             </div>
             <div class="modal-body">
-              <form class="clearfix mb-4" enctype="multipart/form-data" action="/api/examples" method="POST">
+              <form class="clearfix mb-4" enctype="multipart/form-data" action="/form" method="POST">
                 <div class="form-group">
-                  <label for="example-title">Title</label>
+                  <label for="example-title">Photo Title</label>
                   <input type="text" id="example-title" name="title" class="form-control" aria-describedby="example-title" placeholder="Photo Title">
                 </div>
                 <div class="form-group">
-                  <label for="example-photoURL">Example Photo URL</label>
+                  <label for="example-photoURL">Upload Photo</label>
                   <input type="file" name="file">
                 </div>
                 <div class="form-group">
-                  <label for="example-tags">Tags</label>
+                  <label for="example-tags">Tag</label>
                   <input type="text" id="example-tags" name="tags" class="form-control" aria-describedby="example-tags"
                     placeholder="tags">
                 </div>

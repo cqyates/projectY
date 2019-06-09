@@ -14,10 +14,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Profile.findAll({}).then(function(dbExamples) {
-      res.render("example", { user: dbExample });
+  app.get("/useruploads", function(req, res) {
+    db.Details.findAll({}).then(function(dbExamples) {
+      res.render("useruploads", { user: dbExamples });
     });
   });
 
@@ -25,11 +24,8 @@ module.exports = function(app) {
     res.render("upload");
   });
 
-  app.post("/api/location", (req, res) => {
-    console.log(req.body)
-  });
-
-  app.post("/api/examples", upload.single("file"), function(req, res, next) {
+  app.post("/form", upload.single("file"), function(req, res, next) {
+    // if (!())
     const filePath = `/assets/img/${req.file.filename}`;
     var formBody = {
       title: req.body.title,
@@ -50,16 +46,7 @@ module.exports = function(app) {
       password: req.body.password
     };
     db.Profile.create(loginBody).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  //Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Profile.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+      res.redirect("/form");
     });
   });
 };
