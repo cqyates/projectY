@@ -12,9 +12,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{!-- need to create a route to post these to api users? --}}
-                    <form class="clearfix mb-4" id="login-form" enctype="multipart/form-data" action="/api/users"
-                        method="POST">
+                    <form class="clearfix mb-4" id="login-form" enctype="form-data" action="/login" method="POST">
 
                         <div class="form-group">
                             <label for="user-name">Email</label>
@@ -26,7 +24,7 @@
                             <input type="text" id="example-password" name="password" class="form-control"
                                 aria-describedby="example-password" placeholder="password">
                         </div>
-                        <button id="submit" type="submit" class="btn btn-primary float-right">Submit</button>
+                        <button id="submitLogin" type="submit" class="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>
             </div>
@@ -51,6 +49,5 @@
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWvChiWYovzbffWYFQGl1BglNdDgiAsPg&callback=initMap">
 </script>
-<script src="assets/js/map.js"></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="assets/js/index.js"></script>

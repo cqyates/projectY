@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 console.log("Hello?");
 // Get references to page elements
 
+=======
+console.log("This is Index.JS?");
+>>>>>>> 162e5088ed0453e00a11414f45efe9f241119df5
 //getJSON call to flickr API. Tried sticking this in pace of the ajax example given, but it did not work.
 $(document).ready(function() {
   $("#reset").click(function(e) {
@@ -43,21 +47,3 @@ $(document).ready(function() {
     });
   });
 });
-
-// The API object contains methods for each kind of request we'll make
-
-
-// refreshExamples gets new examples from the db and repopulates the list
-
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-
-
-// Add event listeners to the submit and delete buttons
-
-
