@@ -15,6 +15,10 @@ module.exports = function(app) {
     res.render("form");
   });
 
+  app.get("/picresults", function(req, res) {
+    res.render("picresults");
+  });
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Profile.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
