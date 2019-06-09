@@ -1,6 +1,3 @@
-var marker;
-var map;
-var infoWindow;
 console.log("This is a map test");
 
 var options = {
@@ -13,7 +10,7 @@ function success(pos) {
   var crd = pos.coords;
 
   console.log("Your current position is:");
-  // console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
 }
@@ -24,17 +21,6 @@ function error(err) {
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
 function placeMarkerAndPanTo(latLng, map) {
   marker = new google.maps.Marker({
     position: latLng,
@@ -42,20 +28,6 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   map.panTo(latLng);
 }
-function getMarkerLocation() {
-  console.log(google.map.latLng);
-}
-
-
-
-function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-  map.panTo(latLng);
-}
-
 var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
