@@ -1,3 +1,6 @@
+var marker;
+var map;
+var infoWindow;
 console.log("This is a map test");
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
@@ -10,6 +13,24 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
+}
+function placeMarkerAndPanTo(latLng, map) {
+  marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
+}
+function getMarkerLocation() {
+  console.log(google.map.latLng);
+}
+
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
 }
 
 var map, infoWindow;
@@ -38,6 +59,10 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
+    map.addListener("click", function(e) {
+      placeMarkerAndPanTo(e.latLng, map);
+      getMarkerLocation(marker);
+    });
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());

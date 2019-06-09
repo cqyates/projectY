@@ -1,28 +1,14 @@
+//dependencies
 require("dotenv").config();
-
 var express = require("express");
 var exphbs = require("express-handlebars");
-
 var db = require("./models");
-
-//Geocoder
-var NodeGeocoder = require("node-geocoder");
-
-var options = {
-  provider: "google",
-  httpAdapter: "https",
-  apiKey: process.env.GEOCODER_API_KEY,
-  formatter: null
-};
-var geocoder = NodeGeocoder(options);
-
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "1mb" }));
-
 app.use(express.static("public"));
 
 // CORS on Express.js. enables CORS..I think
