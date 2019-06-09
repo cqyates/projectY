@@ -1,31 +1,17 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        {{!-- added this div to test grabbing some photos from flickr --}}
-        <div id="flickrData">
-          <div class="grid-container centered">
-            <div class="grid-100">
-              <div class="contained">
-                <div class="grid-100">
-                  <div class="heading">
-                    <h1>Flickr Photo Search</h1>
-                    <input id="search" type="text" placeholder="search text" />
-                    <button id="searchButton">Submit</button>
-                    <div id="outputDiv"></div>
-                  </div>
-                </div>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/login">Login</a>
+  <a href="/picresults">Find Pictures Near You</a>
+  <a href="/useruploads">User Uploads</a>
+  <a href="/form">Add Your Picture</a>
+  <a href="#">Change Location</a>
+</div>
 
-                <ul id="photos">
+<div class="row">
+    <div class="col-sm-12" id="map"></div>
+</div>
 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src= "/assets/js/index.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWvChiWYovzbffWYFQGl1BglNdDgiAsPg&callback=initMap">
+</script>
+<script src="assets/js/map.js"></script>
