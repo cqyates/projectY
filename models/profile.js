@@ -12,18 +12,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 16]
       }
-    },
-    title: DataTypes.STRING,
-    photoURL: {
-      type: DataTypes.TEXT
-    },
-    tags: DataTypes.STRING,
-    zipcode: {
-      type: DataTypes.STRING,
-      validate: {
-        isNumeric: true
-      }
     }
   });
+
+  // Profile.associate = function(models) {
+  //   Profile.hasMany(models.Details, {
+  //     onDelete: "cascade"
+  //   });
+  // };
   return Profile;
 };

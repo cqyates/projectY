@@ -1,7 +1,6 @@
 var db = require("../models");
 var multer = require("multer");
 
-
 // SET STORAGE
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -33,14 +32,12 @@ module.exports = function(app) {
   app.post("/api/examples", upload.single("file"), function(req, res, next) {
     const filePath = `/assets/img/${req.file.filename}`;
     var formBody = {
-      authorname: req.body.authorname,
-      password: req.body.password,
       title: req.body.title,
       photoURL: filePath,
       tags: req.body.tags,
       zipcode: req.body.zipcode
     };
-    db.Profile.create(formBody).then(function(dbExample) {
+    db.Details.create(formBody).then(function(dbExample) {
       console.log("saved to database");
       res.redirect("/");
     });

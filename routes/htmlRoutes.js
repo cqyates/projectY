@@ -12,6 +12,7 @@ module.exports = function(app) {
   });
 
   app.get("/form", function(req, res) {
+    console.log("this is the form route");
     res.render("form");
   });
 
