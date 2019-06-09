@@ -48,43 +48,6 @@ $(document).ready(function() {
   });
 });
 
-
-
-
-//   method: "GET"
-// }).then(function(response) {
-//   console.log(response)
-// });
-
-// $.getJSON(flickerAPI, {
-//   tags: "historical",
-//   tagmode: "any",
-//   format: "json"
-//   })
-//   .done(function(result) {
-//     $.each(result.items, function(i, item) {
-//       console.log("this is a test");
-//       $("<img>")
-//         .attr("src", item.media.m)
-//         .appendTo("#flickrData");
-//       if (i === 5) {
-//         return false;
-//       }
-//     });
-//   })
-//   .fail(function(xhr, status, error) {
-//     alert(
-//       "Result: " +
-//         status +
-//         " " +
-//         error +
-//         " " +
-//         xhr.status +
-//         " " +
-//         xhr.statusText
-//     );
-//   });
-
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
