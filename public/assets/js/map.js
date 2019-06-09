@@ -21,13 +21,6 @@ function error(err) {
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-function placeMarkerAndPanTo(latLng, map) {
-  marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-  map.panTo(latLng);
-}
 var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
