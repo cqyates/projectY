@@ -12,6 +12,14 @@ function closeNav() {
   document.getElementById("main").style.marginLeft = "0";
 }
 
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  map.panTo(latLng);
+}
+
 var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -38,6 +46,9 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
+    map.addListener("click", function(e) {
+      placeMarkerAndPanTo(e.latLng, map);
+    });
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());

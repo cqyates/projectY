@@ -1,10 +1,6 @@
 console.log("Hello?");
 // Get references to page elements
 
-
-
-
-
 //getJSON call to flickr API. Tried sticking this in pace of the ajax example given, but it did not work.
 $(document).ready(function() {
   $("#reset").click(function(e) {

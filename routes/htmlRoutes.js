@@ -17,7 +17,7 @@ module.exports = function(app) {
   });
 
   app.get("/picresults", function(req, res) {
-    res.render("picresults");
+    res.render("index");
   });
 
   // Load example page and pass in an example by id
