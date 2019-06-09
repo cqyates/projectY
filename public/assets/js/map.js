@@ -54,12 +54,9 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
-    map.addListener("click", function(e) {
-      placeMarkerAndPanTo(e.latLng, map);
-      getMarkerLocation(marker);
-    });
   } else {
     // Browser doesn't support Geolocation
+    //add hard coded location here
     handleLocationError(false, infoWindow, map.getCenter());
   }
 }
