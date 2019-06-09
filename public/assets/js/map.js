@@ -3,6 +3,27 @@ var map;
 var infoWindow;
 console.log("This is a map test");
 
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  var crd = pos.coords;
+
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -24,6 +45,8 @@ function placeMarkerAndPanTo(latLng, map) {
 function getMarkerLocation() {
   console.log(google.map.latLng);
 }
+
+
 
 function placeMarkerAndPanTo(latLng, map) {
   var marker = new google.maps.Marker({

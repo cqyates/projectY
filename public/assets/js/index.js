@@ -7,16 +7,23 @@ $(document).ready(function() {
 
   $("#searchButton").click(function(e) {
     $("#outputDiv").html("");
+    var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${37.8651}&lon=${119.5383}&format=json`;
 
-    var flickerAPI =
-      "https://api.flickr.com/services/feeds/photos_public.gne?format=json&tags=" +
-      $("#search").val();
+    //await - undefined 
+
+    //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+    // https: //api.flickr.com/services/rest/?method=flickr.photos.geo.photosForLocation&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=40.6700&lon=73.9400&format=json&nojsoncallback=1&auth_token=72157638668602974-e1a3a3aa1e6d3dd8&api_sig=a0233b016c863b1662aeb21a664c351a
+    // http: var flickerAPI = `https://api.flickr.com/services/rest/?method=flickr.places.findByLatLon&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=37.8651&lon=119.5383&format=json&jsoncallback=?`;
     $.ajax({
-      url: flickerAPI,
+      url: query,
       dataType: "jsonp", // jsonp
       jsonpCallback: "jsonFlickrFeed", // add this property
       success: function(result, status, xhr) {
-        $.each(result.items, function(i, item) {
+        $.each(result.items, function(i, item) 
+        var result.photos.photo.id[i]
+        // result.id
+        
+        {
           $("<img>")
             .attr("src", item.media.m)
             .appendTo("#outputDiv");
