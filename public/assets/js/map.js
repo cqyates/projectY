@@ -17,7 +17,7 @@ function success(pos) {
   $('#reset').click(function(e) {
     location.reload();
   });
-  console.log('This is Index.js');
+ // FIXME change this search button location.
   $('#searchButton').click(function(e) {
     $('#outputDiv').html('');
     var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json`;
@@ -30,35 +30,7 @@ function success(pos) {
       var resInfo = response.photos.photo.id[i];
       console.log(resInfo);
     });
-    //     success: function(result, status, xhr) {
-    //       $.each(result.items, function(i, item)
-    //       // var result.photos.photo.id[i]
-    //       // result.id
-
-    //       {
-    //         $("<img>")
-    //           .attr("src", item.media.m)
-    //           .appendTo("#outputDiv");
-    //         if (i === 5) {
-    //           return false;
-    //         }
-    //       });
-    //     },
-    //     error: function(xhr, status, error) {
-    //       console.log(xhr);
-    //       $("#outputDiv").html(
-    //         "Result: " +
-    //           status +
-    //           " " +
-    //           error +
-    //           " " +
-    //           xhr.status +
-    //           " " +
-    //           xhr.statusText
-    //       );
-    //     }
-    //   });
-    // });
+    
   });
 
   return crd;
@@ -70,26 +42,12 @@ function error(err) {
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById('mySidenav').style.width = '250px';
-  document.getElementById('main').style.marginLeft = '250px';
-}
-
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById('mySidenav').style.width = '0';
-  document.getElementById('main').style.marginLeft = '0';
-}
 function placeMarkerAndPanTo(latLng, map) {
   marker = new google.maps.Marker({
     position: latLng,
     map: map
   });
   map.panTo(latLng);
-}
-function getMarkerLocation() {
-  console.log(google.map.latLng);
 }
 
 function placeMarkerAndPanTo(latLng, map) {
