@@ -14,23 +14,24 @@ function success(pos) {
   var lat = crd.latitude;
   var lon = crd.longitude;
   var accuracy = crd.accuracy;
-  $('#reset').click(function(e) {
+
+  $("#reset").click(function(e) {
     location.reload();
   });
- // FIXME change this search button location.
-  $('#searchButton').click(function(e) {
-    $('#outputDiv').html('');
+  // FIXME change this search button location.
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
     var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json`;
     //await - undefined
     //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     $.ajax({
       url: query,
-      method: 'GET'
+      method: "GET"
     }).then(function(response) {
+      console.log(response);
       var resInfo = response.photos.photo.id[i];
       console.log(resInfo);
     });
-    
   });
 
   return crd;
@@ -60,7 +61,7 @@ function placeMarkerAndPanTo(latLng, map) {
 
 var map, infoWindow;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 6
   });
@@ -76,7 +77,7 @@ function initMap() {
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent('You are Here!');
+        infoWindow.setContent("You are Here!");
         infoWindow.open(map);
         map.setCenter(pos);
       },
@@ -84,7 +85,7 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
-    map.addListener('click', function(e) {
+    map.addListener("click", function(e) {
       placeMarkerAndPanTo(e.latLng, map);
       getMarkerLocation(marker);
     });
@@ -98,26 +99,26 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
-      ? 'Error: The Geolocation service failed.'
+      ? "Error: The Geolocation service failed."
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
 }
 
 $(document).ready(function() {
-  $('#reset').click(function(e) {
+  $("#reset").click(function(e) {
     location.reload();
   });
-  console.log('This is Index.js');
-  $('#searchButton').click(function(e) {
-    $('#outputDiv').html('');
+  console.log("This is Index.js");
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
     var query =
-      'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json';
+      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json";
     //await - undefined
     //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     $.ajax({
       url: query,
-      method: 'GET'
+      method: "GET"
     }).then(function(response) {
       var resInfo = response.photos.photo.id[i];
       console.log(resInfo);
