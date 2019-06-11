@@ -87,6 +87,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
+//This Ajax call works, the other one does not.
 $(document).ready(function() {
   $("#reset").click(function(e) {
     location.reload();
