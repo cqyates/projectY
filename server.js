@@ -53,5 +53,3 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
-
-// "This is a test Item I entered"
