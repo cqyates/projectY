@@ -1,4 +1,3 @@
-var marker;
 var map;
 var infoWindow;
 
@@ -18,19 +17,15 @@ function success(pos) {
   $("#reset").click(function(e) {
     location.reload();
   });
-  // FIXME change this search button location.
+
   $("#searchButton").click(function(e) {
     $("#outputDiv").html("");
     var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json`;
-    //await - undefined
-    //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     $.ajax({
       url: query,
       method: "GET"
     }).then(function(response) {
       console.log(response);
-      var resInfo = response.photos.photo.id[i];
-      console.log(resInfo);
     });
   });
 
@@ -48,18 +43,9 @@ function placeMarkerAndPanTo(latLng, map) {
     position: latLng,
     map: map
   });
-  map.panTo(latLng);
+  ap.panTo(latLng);
 }
 
-function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-  map.panTo(latLng);
-}
-
-var map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
@@ -77,7 +63,7 @@ function initMap() {
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent("You are Here!");
+        infoWindow.setContent("<button id='searchButton'>Submit</button>");
         infoWindow.open(map);
         map.setCenter(pos);
       },
@@ -85,10 +71,6 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
-    map.addListener("click", function(e) {
-      placeMarkerAndPanTo(e.latLng, map);
-      getMarkerLocation(marker);
-    });
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
