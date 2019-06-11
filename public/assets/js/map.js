@@ -1,4 +1,3 @@
-var marker;
 var map;
 var infoWindow;
 
@@ -14,51 +13,20 @@ function success(pos) {
   var lat = crd.latitude;
   var lon = crd.longitude;
   var accuracy = crd.accuracy;
-  $('#reset').click(function(e) {
+
+  $("#reset").click(function(e) {
     location.reload();
   });
-  console.log('This is Index.js');
-  $('#searchButton').click(function(e) {
-    $('#outputDiv').html('');
+
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
     var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json`;
-    //await - undefined
-    //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     $.ajax({
       url: query,
-      method: 'GET'
+      method: "GET"
     }).then(function(response) {
-      var resInfo = response.photos.photo.id[i];
-      console.log(resInfo);
+      console.log(response);
     });
-    //     success: function(result, status, xhr) {
-    //       $.each(result.items, function(i, item)
-    //       // var result.photos.photo.id[i]
-    //       // result.id
-
-    //       {
-    //         $("<img>")
-    //           .attr("src", item.media.m)
-    //           .appendTo("#outputDiv");
-    //         if (i === 5) {
-    //           return false;
-    //         }
-    //       });
-    //     },
-    //     error: function(xhr, status, error) {
-    //       console.log(xhr);
-    //       $("#outputDiv").html(
-    //         "Result: " +
-    //           status +
-    //           " " +
-    //           error +
-    //           " " +
-    //           xhr.status +
-    //           " " +
-    //           xhr.statusText
-    //       );
-    //     }
-    //   });
-    // });
   });
 
   return crd;
@@ -70,39 +38,16 @@ function error(err) {
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById('mySidenav').style.width = '250px';
-  document.getElementById('main').style.marginLeft = '250px';
-}
-
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById('mySidenav').style.width = '0';
-  document.getElementById('main').style.marginLeft = '0';
-}
 function placeMarkerAndPanTo(latLng, map) {
   marker = new google.maps.Marker({
     position: latLng,
     map: map
   });
-  map.panTo(latLng);
-}
-function getMarkerLocation() {
-  console.log(google.map.latLng);
+  ap.panTo(latLng);
 }
 
-function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-  map.panTo(latLng);
-}
-
-var map, infoWindow;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 6
   });
@@ -118,7 +63,7 @@ function initMap() {
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent('You are Here!');
+        infoWindow.setContent("<button id='searchButton'>Submit</button>");
         infoWindow.open(map);
         map.setCenter(pos);
       },
@@ -126,10 +71,6 @@ function initMap() {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
-    map.addListener('click', function(e) {
-      placeMarkerAndPanTo(e.latLng, map);
-      getMarkerLocation(marker);
-    });
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
@@ -140,26 +81,27 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
-      ? 'Error: The Geolocation service failed.'
+      ? "Error: The Geolocation service failed."
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
 }
 
+//This Ajax call works, the other one does not.
 $(document).ready(function() {
-  $('#reset').click(function(e) {
+  $("#reset").click(function(e) {
     location.reload();
   });
-  console.log('This is Index.js');
-  $('#searchButton').click(function(e) {
-    $('#outputDiv').html('');
+  console.log("This is Index.js");
+  $("#searchButton").click(function(e) {
+    $("#outputDiv").html("");
     var query =
-      'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json';
+      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json";
     //await - undefined
     //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     $.ajax({
       url: query,
-      method: 'GET'
+      method: "GET"
     }).then(function(response) {
       var resInfo = response.photos.photo.id[i];
       console.log(resInfo);
