@@ -9,28 +9,31 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords;
-
+  
   var lat = crd.latitude;
   var lon = crd.longitude;
   var accuracy = crd.accuracy;
-
+  
   $("#reset").click(function(e) {
     location.reload();
   });
-
+  
   $("#searchButton").click(function(e) {
     $("#outputDiv").html("");
-    var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json`;
+    var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1`;
     $.ajax({
       url: query,
       method: "GET"
-    }).then(function(response) {
-      console.log(response);
+    }).then(function(data) {
+      JSON.stringify(data);
+      console.log(data.photos.photo);
+      // flickrResponse = rsp;
     });
   });
-
+  
   return crd;
 }
+// console.log(flickrResponse)
 
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -88,24 +91,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 //This Ajax call works, the other one does not.
-$(document).ready(function() {
-  $("#reset").click(function(e) {
-    location.reload();
-  });
-  console.log("This is Index.js");
-  $("#searchButton").click(function(e) {
-    $("#outputDiv").html("");
-    var query =
-      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json";
-    //await - undefined
-    //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-    $.ajax({
-      url: query,
-      method: "GET"
-    }).then(function(response) {
-      var resInfo = response.photos.photo.id[i];
-      console.log(resInfo);
-    });
+// $(document).ready(function() {
+//   $("#reset").click(function(e) {
+//     location.reload();
+//   });
+//   console.log("This is Index.js");
+//   $("#searchButton").click(function(e) {
+//     $("#outputDiv").html("");
+//     var query =
+//       "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=32.1155&lon=-81.2471&format=json";
+//     //await - undefined
+//     //farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+//     $.ajax({
+//       url: query,
+//       method: "GET"
+//     }).then(function(response) {
+//       var resInfo = response.photos.photo.id[i];
+//       console.log(resInfo);
+//     });
     //     success: function(result, status, xhr) {
     //       $.each(result.items, function(i, item)
     //       // var result.photos.photo.id[i]
@@ -135,5 +138,5 @@ $(document).ready(function() {
     //     }
     //   });
     // });
-  });
-});
+//   });
+// });
