@@ -1,32 +1,31 @@
-<div id="home">
+
+  
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        {{!-- added this div to test grabbing some photos from flickr --}}
-        <div id="flickrData">
-          <div class="grid-container centered">
-            <div class="grid-100">
-              <div class="contained">
-                <div class="grid-100">
-                  <div class="heading">
-                    <h1>Flickr Photo Search</h1>
-                    <input id="search" type="text" placeholder="search text" />
-                 <button id="searchButton">Submit</button>
-                    <div id="images"></div>
-                  </div>
-                </div>
+      <div class="col-sm-3">
+        <div id="mySidenav" class="sidenav">
+        <a href="/login">Login</a>
+        <a href="/picresults">See Pictures</a>
+        <a href="/useruploads">User Uploads</a>
+        <a href="/form">Add Your Picture</a>
+      </div>
+    </div>
 
-                <ul id="photos">
-
-                </ul>
+    <div class="col-sm-9">
+      <div id="flickrData">
+        <div class="grid-container centered">
+          <div class="grid-100">
+            <div class="contained">
+              <div class="grid-100">
+                <button id="searchButton">Submit</button>
+                <div id="images"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+    </div>
+      
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src= "/assets/js/map.js"></script>
  
