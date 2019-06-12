@@ -70,7 +70,7 @@ function initMap() {
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent("<button id='searchButton'>Submit</button>");
+        infoWindow.setContent("You are Here");
         infoWindow.open(map);
         map.setCenter(pos);
       },
