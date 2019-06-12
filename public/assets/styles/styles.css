@@ -8,6 +8,13 @@
   height: 600px;
   box-shadow: 5px 10px 8px #888888;
 }
+#images {
+  width: 250px;
+  margin: 10px;
+}
+#flickrData {
+  margin: 25px;
+}
 
  /* The side navigation menu */
  .sidenav {

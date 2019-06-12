@@ -9,15 +9,14 @@ var options = {
 
 function success(pos) {
   var crd = pos.coords;
-  
+
   var lat = crd.latitude;
   var lon = crd.longitude;
   var accuracy = crd.accuracy;
-  
   $("#reset").click(function(e) {
     location.reload();
   });
-  
+
   $("#searchButton").click(function(e) {
     $("#outputDiv").html("");
     var query = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c9f777eb7446f34a7261dc1a54be4b2&lat=${lat}&lon=${lon}&per_page=10&format=json&nojsoncallback=1`;
@@ -32,11 +31,11 @@ function success(pos) {
         var id = data.photos.photo[i].id;
         var secret = data.photos.photo[i].secret;
         var imageUrl = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
-        $('#images').append($('<img src="'+imageUrl+'"/>'));
+        $("#images").append($("<img src='" + imageUrl + "'/>"));
       }
     });
   });
-  
+
   return crd;
 }
 
@@ -94,4 +93,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
-
