@@ -1,5 +1,3 @@
-//Sets up the database through sequelize TODO should we have two tables (user/password and photo entry?)
-
 module.exports = function(sequelize, DataTypes) {
   var Details = sequelize.define("Details", {
     title: DataTypes.STRING,
@@ -15,12 +13,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // Details.associate = function(models) {
-  //   Details.belongsTo(models.Profile, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
   return Details;
 };
