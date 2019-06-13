@@ -25,7 +25,6 @@ module.exports = function(app) {
   });
 
   app.post("/form", upload.single("file"), function(req, res, next) {
-    // if (!())
     const filePath = `/assets/img/${req.file.filename}`;
     var formBody = {
       title: req.body.title,
